@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1200 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="wolke" transform="matrix(0.733892,0,0,0.733892,7.46239,54.4504)">
+        <path d="M473.2,278.1C474.5,270.1 475.2,262 475.2,254C475.2,172.7 409,106.5 327.7,106.5C274,106.5 225.6,135 199.4,181.5C185.7,175.3 170.7,172.1 155.6,172.1C99.1,172.1 52.7,216.3 49.3,272.5C20.8,279.8 0,305.9 0,335.9C0,372 29.4,401.4 65.5,401.4L442.4,401.4C478.5,401.4 507.9,372 507.9,335.9C508,311.4 494.6,289.4 473.2,278.1ZM442.5,385.1L65.5,385.1C38.4,385.1 16.3,363 16.3,335.9C16.3,289.1 65.5,285.7 65.5,285.7L65.5,278.6C65.5,228.9 105.9,188.5 155.6,188.5C185,188.5 206.4,203.7 206.4,203.7C206.4,203.7 240.3,122.9 327.6,122.9C399.9,122.9 458.7,181.7 458.7,254C458.7,275.6 454.5,287.8 454.5,287.8C454.5,287.8 491.5,297.4 491.5,335.9C491.6,363 469.6,385.1 442.5,385.1Z" style="fill-rule:nonzero;"/>
+        <path d="M327.7,147.5L327.7,163.9C377.4,163.9 417.8,204.3 417.8,254L434.2,254C434.3,195.3 386.5,147.5 327.7,147.5Z" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(27.0457,0,0,27.0457,384.667,342.725)">
+        <text x="0px" y="0px" style="font-family:'Microsoft-Yi-Baiti', 'Microsoft Yi Baiti', cursive;font-size:12px;">Doccou</text>
+    </g>
+</svg>

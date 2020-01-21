@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.1'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=doccou_db_user
+      - MARIADB_DATABASE=doccou_db
+      - MARIADB_PASSWORD=DOmKVWYkRIMGpTSyuniM
+    volumes:
+      - 'doccou_mariadb_data:/bitnami'
+
+  laravel:
+    tty: true
+    image: 'bitnami/laravel:6-debian-9'
+    environment:
+      - DB_HOST=mariadb
+      - DB_USERNAME=doccou_db_user
+      - DB_DATABASE=doccou_db
+      - DB_PASSWORD=DOmKVWYkRIMGpTSyuniM
+    depends_on:
+      - mariadb
+    ports:
+      - 3000:3000
+    #privileged: true # Privileged mode could be required to run this container under Windows
+
+  phpmyadmin:
+    image: 'phpmyadmin/phpmyadmin'
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_USER=doccou_db_user
+      - PMA_PASSWORD=DOmKVWYkRIMGpTSyuniM
+      - PMA_PORTS=3306
+    ports:
+      - '100:80'
