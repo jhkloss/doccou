@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Doccou</title>
 
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="{{ URL::asset('font-awesome/css/all.css') }}">
 
     <script src="{{ URL::asset('js/jquery.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery-ui.min.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
 
 </head>

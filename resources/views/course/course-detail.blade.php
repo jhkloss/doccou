@@ -1,8 +1,6 @@
 @extends('layout.layout')
 
 @section('content')
-
-
     <section class="tile-course">
         <div class="tile is-ancestor ">
             <div class="tile is-parent is-vertical">
@@ -14,9 +12,7 @@
         </div>
     </section>
 
-
-
-        <section class="course-detail">
+    <section class="course-detail">
         <div class="tile is-ancestor">
             <div class="tile is-vertical is-8">
                 <div class="tile">
@@ -58,18 +54,21 @@
                     <p class="subtitle">Here are all the Tasks that belong to this course.</p>
 
                     <div class="task-list">
-                        <div class="box">
-                            <strong>Task1</strong>
-
-                        </div>
-
-                        <div class="box">
-                            <strong>Task2</strong>
-                        </div>
+                        @each('task.task-entry-small', $tasks, 'task' )
                     </div>
 
-
-
+                    @if(\App\Http\Controllers\Course\CourseController::canEdit($course->id))
+                        <div class="buttons">
+                            <a id="create-task-btn" data-courseid="{{ $course->id }}">
+                                <button class="button is-rounded">
+                             <span class="icon is-small">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                                    <span>Add</span>
+                                </button>
+                            </a>
+                        </div>
+                    @endif
                 </article>
             </div>
         </div>

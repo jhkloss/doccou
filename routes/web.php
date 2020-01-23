@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Task;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +42,12 @@ Route::get('/courses/view/{id}', function($id) {
     return view('course/course-detail')->with('id', $id);
 })->middleware('auth')->name('viewCourse');
 
+Route::get('task/edit/{id}', function($id){
+    return view('task/edit-task')
+        ->with('id', $id)
+        ->with('task', Task::find($id));
+})->middleware('auth')->name('editTask');
+
 // Controllers
 
 // Auth
@@ -52,3 +58,7 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 // Course
 Route::post('/courses/new/create', 'Course\CourseController@create')->name('formNewCourse')->middleware('auth');
 Route::post('/courses/edit/save', 'Course\CourseController@edit')->name('formEditCourse')->middleware('auth');
+
+// Task
+Route::post('/task/add', 'Task\TaskController@add')->middleware('auth');
+Route::post('/task/edit/save', 'Task\TaskController@edit')->name('formEditTask')->middleware('auth');

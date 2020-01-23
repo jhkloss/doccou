@@ -19,5 +19,12 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('12345'),
             'created_at' => DB::raw('CURRENT_TIMESTAMP')
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Marco Rausch',
+            'email' => 'rausch@mail.de',
+            'password' => Hash::make('12345'),
+            'created_at' => DB::raw('CURRENT_TIMESTAMP')
+        ]);
     }
 }
