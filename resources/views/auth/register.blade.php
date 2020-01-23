@@ -1,7 +1,7 @@
 @extends('layout/layout')
 
 @section('content')
-    <form action="register/create" method="POST">
+    <form action="{{ route('formRegister')  }}" method="POST">
         {{ csrf_field() }}
         <div class="field">
             <p class="control has-icons-left has-icons-right">

@@ -2,9 +2,16 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CourseTableSeeder extends Seeder
 {
+
+    private $amount = 5;
+    private $userID = 1;
+
+    public function __construct(){}
+
     /**
      * Run the database seeds.
      *
@@ -12,13 +19,13 @@ class CourseTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('course')->truncate();
-
-        for($i = 0; $i < 5; $i++)
+        for($i = 0; $i < $this->amount; $i++)
         {
             DB::table('course')->insert([
                 'name' => 'Course' . $i,
-                'created_at' => DB::raw('CURRENT_TIMESTAMP')
+                'creator_id' => $this->userID,
+                'description' => Str::random('20'),
+                'created_at' => DB::raw('CURRENT_TIMESTAMP'),
             ]);
         }
     }

@@ -5,10 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class CourseServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */
@@ -18,15 +18,12 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
     public function boot()
     {
-        // Assign Composers
-
-        View::composer('main', 'App\Composers\MainComposer');
         View::composer('course/course-overview', 'App\Composers\CourseOverviewComposer');
         View::composer('course/course-detail', 'App\Composers\CourseDetailComposer');
         View::composer('course/edit-course', 'App\Composers\CourseEditComposer');

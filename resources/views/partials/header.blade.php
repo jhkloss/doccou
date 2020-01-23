@@ -14,13 +14,32 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
+
+
+
+            @if(Auth::check())
             <a class="navbar-item">
-                Home
+                Dashboard
+            </a>
+
+            <a href="{{ route('courses') }}" class="navbar-item">
+                Courses
             </a>
 
             <a class="navbar-item">
-                Documentation
+                Tasks
             </a>
+
+            <a class="navbar-item">
+                Profile
+            </a>
+            @else
+
+            <a class="navbar-item">
+                About Doccou
+            </a>
+
+            @endif
 
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
@@ -62,7 +81,7 @@
             @else
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary">
+                        <a href="{{ route('register')  }}" class="button is-primary">
                             <strong>Sign up</strong>
                         </a>
                         <a id="login-btn" class="button is-light">

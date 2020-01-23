@@ -13,11 +13,11 @@ class MainComposer
     public function __construct()
     {
         // Dependencies automatically resolved by service container...
-        $this->courses = DB::table('course')->get();
+
     }
 
     public function compose(View $view)
     {
-        $view->with('courses', $this->courses);
+
     }
 }

@@ -17,12 +17,15 @@
     @include('partials/header')
 
     <div class="main-content">
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </div>
 
-    @yield('login')
+    @if(!Auth::check())
+        @include('partials/login')
+    @endif
 
     @include('partials/footer')
-
 </body>
 </html>
