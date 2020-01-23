@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Task;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,47 +17,3 @@ use App\Task;
 Route::get('/', function () {
    return view('main');
 })->name('main');
-
-Route::get('/register', function () {
-    return view('auth/register');
-})->name('register');
-
-Route::get('/profile', function () {
-})->middleware('auth');
-
-Route::get('/courses', function () {
-    return view('course/course-overview');
-})->middleware('auth')->name('courses');
-
-Route::get('/courses/new', function() {
-    return view('course/create-course');
-})->middleware('auth')->name('createCourse');
-
-Route::get('/courses/edit/{id}', function($id) {
-    return view('course/edit-course')->with('id', $id);
-})->middleware('auth', 'checkEditCourse')->name('editCourse');
-
-Route::get('/courses/view/{id}', function($id) {
-    return view('course/course-detail')->with('id', $id);
-})->middleware('auth')->name('viewCourse');
-
-Route::get('task/edit/{id}', function($id){
-    return view('task/edit-task')
-        ->with('id', $id)
-        ->with('task', Task::find($id));
-})->middleware('auth')->name('editTask');
-
-// Controllers
-
-// Auth
-Route::post('/register/create', 'Auth\RegisterController@create')->name('formRegister');
-Route::post('/login', 'Auth\LoginController@authenticate')->name('formLogin');
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-
-// Course
-Route::post('/courses/new/create', 'Course\CourseController@create')->name('formNewCourse')->middleware('auth');
-Route::post('/courses/edit/save', 'Course\CourseController@edit')->name('formEditCourse')->middleware('auth');
-
-// Task
-Route::post('/task/add', 'Task\TaskController@add')->middleware('auth');
-Route::post('/task/edit/save', 'Task\TaskController@edit')->name('formEditTask')->middleware('auth');

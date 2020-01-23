@@ -1,5 +1,6 @@
 <?php
 
+use App\Course;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -7,7 +8,7 @@ use Illuminate\Support\Str;
 class CourseTableSeeder extends Seeder
 {
 
-    private $amount = 5;
+    private $amount = 10;
     private $userID = 1;
 
     public function __construct(){}
@@ -19,14 +20,15 @@ class CourseTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
+
         for($i = 0; $i < $this->amount; $i++)
         {
-            DB::table('course')->insert([
-                'name' => 'Course' . $i,
-                'creator_id' => $this->userID,
-                'description' => Str::random('20'),
-                'created_at' => DB::raw('CURRENT_TIMESTAMP'),
-            ]);
+            $Course = new Course();
+            $Course->creator_id = $this->userID;
+            $Course->name = $faker->words(3,true);
+            $Course->description = $faker->sentences(2, true);
+            $Course->save();
         }
     }
 }

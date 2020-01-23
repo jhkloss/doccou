@@ -3,13 +3,18 @@
 namespace App\Http\Controllers\Course;
 
 use App\Http\Controllers\Controller;
+use App\Traits\MemberTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
+    use MemberTrait;
+
     private $currentUserID;
+
+    // TODO: Auf Course Model umbauen
 
     /**
      * Create a new controller instance.
@@ -131,4 +136,5 @@ class CourseController extends Controller
         }
         return false;
     }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Task;
 
+use App\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Course\CourseController;
 use App\Task;
@@ -81,7 +82,7 @@ class TaskController extends Controller
 
     static function getAllForCourse($courseID)
     {
-        return Task::all()->where('course_id', $courseID);
+        return Course::find($courseID)->tasks;
     }
 
     static function getAllForUser($userID)

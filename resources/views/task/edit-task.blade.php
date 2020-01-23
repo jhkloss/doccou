@@ -11,7 +11,7 @@
             <div class="tile is-parent">
                 <div class="field">
                     <label for="name" class="label">Name</label>
-                    <p class="control has-icons-left">
+                    <p class="control">
                         <input id="name" class="input" name="name" type="text" value="{{ $task->name }}">
                     </p>
                 </div>

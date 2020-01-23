@@ -19,3 +19,7 @@
 #create-task-btn {
     margin-top: 25px;
 }
+
+.member-list > .tag > strong{
+    margin-right: 5px;
+}

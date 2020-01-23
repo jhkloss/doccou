@@ -22,6 +22,12 @@ $(document).ready(function(){
        AddTask(courseID);
     });
 
+    $('.delete-member').on('click', function()
+    {
+        let userID = $(this).data('userid');
+        let courseID = $('#course-id').data('courseid');
+        DeleteMember(userID, courseID);
+    });
 });
 
 function AddTask(courseID)
@@ -30,11 +36,11 @@ function AddTask(courseID)
         method: 'POST',
         url: '/task/add',
         data: { 'courseID': courseID},
-        success: function(response) {PrependTaskBox(response)}
+        success: function(response) {AppendTaskBox(response)}
     });
 }
 
-function PrependTaskBox(response)
+function AppendTaskBox(response)
 {
     if(response !== 'false')
     {
@@ -42,4 +48,14 @@ function PrependTaskBox(response)
         $('.task-list').append(item);
         $(item).effect( 'slide');
     }
+}
+
+function DeleteMember(userID, courseID)
+{
+    $.ajax({
+       method: 'POST',
+       url: '/courses/' + courseID + '/member/remove',
+       data: { 'userID': userID},
+        success: function() { $('button[data-userid=' + userID + '] ').parent().effect('explode'); }
+    });
 }

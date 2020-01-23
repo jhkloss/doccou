@@ -13,7 +13,7 @@ class CourseDetailComposer
     private $course;
     private $creator;
     private $tasks;
-    private $canEdit;
+    private $members;
 
     public function __construct()
     {
@@ -22,6 +22,7 @@ class CourseDetailComposer
         $this->course = CourseController::get($this->id);
         $this->creator = CourseController::getCreator($this->id);
         $this->tasks = TaskController::getAllForCourse($this->id);
+        $this->members = CourseController::getCourseMembers($this->id);
     }
 
     public function compose(View $view)
@@ -29,6 +30,7 @@ class CourseDetailComposer
         return $view
             ->with('course', $this->course)
             ->with('creator', $this->creator)
-            ->with('tasks', $this->tasks);
+            ->with('tasks', $this->tasks)
+            ->with('members', $this->members);
     }
 }

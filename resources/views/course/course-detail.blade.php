@@ -43,6 +43,9 @@
                     <article class="tile is-child notification is-warning">
                         <p class="title">Members</p>
                         <p class="subtitle">See who is part of this course.</p>
+                        <div class="tags member-list">
+                            @each('member.member-entry', $members, 'member')
+                        </div>
                     </article>
                 </div>
 
@@ -73,4 +76,7 @@
             </div>
         </div>
     </section>
+
+    <div id="course-id" class="is-hidden" data-courseid="{{ $course->id }}"></div>
+
 @endsection
