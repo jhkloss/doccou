@@ -2,7 +2,9 @@
     <div class="level">
         <div class="level-left">
             <div class="level-item">
-                <strong>{{ $task->name }}</strong>
+                <a href="{{ route('viewTask', $task->id) }}">
+                    <strong>{{ $task->name }}</strong>
+                </a>
             </div>
         </div>
         <div class="level-right">

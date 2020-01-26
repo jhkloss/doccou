@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany('App\Course', 'course_user', 'course_id', 'user_id');
+        return $this->belongsToMany('App\Course', 'course_user',  'user_id', 'course_id');
     }
 }

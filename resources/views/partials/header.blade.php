@@ -18,7 +18,7 @@
 
 
             @if(Auth::check())
-            <a class="navbar-item">
+            <a href="{{ route('dashboard') }}" class="navbar-item">
                 Dashboard
             </a>
 

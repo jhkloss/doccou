@@ -16,6 +16,6 @@ class Course extends Model
 
     public function members()
     {
-        return $this->belongsToMany('App\User', 'course_user', 'user_id', 'course_id');
+        return $this->belongsToMany('App\User', 'course_user',  'course_id' , 'user_id');
     }
 }

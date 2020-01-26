@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Course;
 
+use App\Course;
 use App\Http\Controllers\Controller;
 use App\Traits\MemberTrait;
 use Illuminate\Http\Request;
@@ -136,5 +137,4 @@ class CourseController extends Controller
         }
         return false;
     }
-
 }

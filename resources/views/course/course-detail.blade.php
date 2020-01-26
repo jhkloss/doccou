@@ -42,10 +42,37 @@
                 <div class="tile is-parent">
                     <article class="tile is-child notification is-warning">
                         <p class="title">Members</p>
-                        <p class="subtitle">See who is part of this course.</p>
+                        <p class="subtitle">Manage who is part of this course.</p>
                         <div class="tags member-list">
-                            @each('member.member-entry', $members, 'member')
+                            @foreach($members as $member)
+                                @include('member.member-entry', [
+                                            'member' => $member,
+                                            'canEdit' => $canEdit,
+                                        ])
+                            @endforeach
                         </div>
+
+                        @if($canEdit)
+                        <div class="tile is-ancestor is-6">
+                            <div class="tile is-parent is-vertical">
+                                <div class="tile is-child">
+                                    <div class="box">
+                                        <select id="add-member"></select>
+                                        <div class="buttons">
+                                            <a id="add-member-btn">
+                                                <button class="button is-success">
+                                                    <span class="icon is-small">
+                                                        <i class="fas fa-plus"></i>
+                                                    </span>
+                                                    <span>Add</span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     </article>
                 </div>
 
@@ -60,13 +87,13 @@
                         @each('task.task-entry-small', $tasks, 'task' )
                     </div>
 
-                    @if(\App\Http\Controllers\Course\CourseController::canEdit($course->id))
+                    @if($canEdit)
                         <div class="buttons">
                             <a id="create-task-btn" data-courseid="{{ $course->id }}">
                                 <button class="button is-rounded">
-                             <span class="icon is-small">
-                                <i class="fas fa-plus"></i>
-                            </span>
+                                    <span class="icon is-small">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
                                     <span>Add</span>
                                 </button>
                             </a>

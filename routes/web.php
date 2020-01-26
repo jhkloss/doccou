@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
    return view('main');
 })->name('main');
+
+Route::get('/dashboard', function () {
+    return view('dashboard.dashboard');
+})->name('dashboard')->middleware('auth');
+
+
+Route::post('/getusers', 'User\UserController@getUsersJSON')->middleware('auth');
+

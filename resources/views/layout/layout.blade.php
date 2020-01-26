@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="{{ URL::asset('css/bulma.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('font-awesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/select2.min.css') }}">
 
     <script src="{{ URL::asset('js/jquery.js') }}"></script>
     <script src="{{ URL::asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ URL::asset('js/select2.full.min.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
 
 </head>

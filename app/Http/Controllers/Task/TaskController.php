@@ -17,11 +17,6 @@ class TaskController extends Controller
      */
     public function __construct()
     {
-
-    }
-
-    public function create(Request $request)
-    {
     }
 
     public function add(Request $request)

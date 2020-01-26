@@ -16,10 +16,15 @@
     margin-top: 25px;
 }
 
-#create-task-btn {
+#create-task-btn, #add-member-btn {
     margin-top: 25px;
+    text-decoration: none;
 }
 
 .member-list > .tag > strong{
     margin-right: 5px;
+}
+
+.notification a:not(.button):not(.dropdown-item) {
+    text-decoration: none;
 }

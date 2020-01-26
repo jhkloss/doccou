@@ -19,10 +19,8 @@ Route::get('/courses/view/{id}', function($id) {
 })->middleware('auth')->name('viewCourse');
 
 Route::post('/courses/new/create', 'Course\CourseController@create')->name('formNewCourse')->middleware('auth');
-
 Route::post('/courses/edit/save', 'Course\CourseController@edit')->name('formEditCourse')->middleware('auth');
 
-// TASK MANAGEMENT
-
 Route::post('/courses/{courseID}/member/add', 'Course\CourseController@addMember')->name('addMember')->middleware('auth');
-Route::post('/courses/{courseID}/member/remove', 'Course\CourseController@removeMember')->name('addMember')->middleware('auth');
+Route::post('/courses/{courseID}/member/remove', 'Course\CourseController@removeMember')->name('removeMember')->middleware('auth');
+

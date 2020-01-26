@@ -30,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         View::composer('course/course-overview', 'App\Composers\CourseOverviewComposer');
         View::composer('course/course-detail', 'App\Composers\CourseDetailComposer');
         View::composer('course/edit-course', 'App\Composers\CourseEditComposer');
+        View::composer('dashboard/dashboard', 'App\Composers\DashboardComposer');
     }
 }

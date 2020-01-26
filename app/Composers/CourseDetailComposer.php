@@ -2,6 +2,7 @@
 
 namespace App\Composers;
 
+use App\Course;
 use App\Http\Controllers\Course\CourseController;
 use App\Http\Controllers\Task\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ class CourseDetailComposer
     private $creator;
     private $tasks;
     private $members;
+    private $canEdit;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class CourseDetailComposer
         $this->creator = CourseController::getCreator($this->id);
         $this->tasks = TaskController::getAllForCourse($this->id);
         $this->members = CourseController::getCourseMembers($this->id);
+        $this->canEdit = CourseController::canEdit($this->id);
     }
 
     public function compose(View $view)
@@ -31,6 +34,7 @@ class CourseDetailComposer
             ->with('course', $this->course)
             ->with('creator', $this->creator)
             ->with('tasks', $this->tasks)
-            ->with('members', $this->members);
+            ->with('members', $this->members)
+            ->with('canEdit', $this->canEdit);
     }
 }

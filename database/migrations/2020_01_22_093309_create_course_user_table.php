@@ -25,7 +25,7 @@ class CreateCourseUserTable extends Migration
             // Constraints
             $table->foreign('course_id')->references('id')->on('course');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamps();
+
         });
     }
 
