@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Course\CourseController;
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
 {
@@ -51,6 +52,51 @@ class TaskController extends Controller
         return redirect()->route('viewCourse', $Task->course_id);
     }
 
+    public function uploadDockerfile(Request $request, $taskID)
+    {
+        $path = $request->file('dockerfile')->store('dockerfiles');
+
+        if($path)
+        {
+            $Task = Task::find($taskID);
+
+            if($Task)
+            {
+
+                if($Task->dockerfile && Storage::exists($Task->dockerfile))
+                {
+                    Storage::delete($Task->dockerfile);
+                }
+
+                $Task->dockerfile = $path;
+                $Task->save();
+            }
+
+            return redirect()->route('viewTask', $Task->id);
+        }
+    }
+
+    static function saveImage($taskID, $imageID)
+    {
+        $Task = Task::find($taskID);
+
+        if($Task)
+        {
+            $Task->dockerimage = $imageID;
+            $Task->save();
+        }
+    }
+
+    static function hasImage($taskID)
+    {
+        $task = Task::find($taskID);
+        if($task->dockerimage)
+        {
+            return true;
+        }
+        return false;
+    }
+
     static function canEdit($taskID)
     {
         $courseID = Task::find($taskID)->course_id;
@@ -78,10 +124,5 @@ class TaskController extends Controller
     static function getAllForCourse($courseID)
     {
         return Course::find($courseID)->tasks;
-    }
-
-    static function getAllForUser($userID)
-    {
-
     }
 }

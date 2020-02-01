@@ -15,7 +15,11 @@ class CreateContainerTable extends Migration
     {
         Schema::create('container', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->nullable(false);
+            $table->string('handle')->nullable(false);
             $table->timestamps();
+
+            //$table->foreign('user_id')->references('id')->on('users');
         });
     }
 

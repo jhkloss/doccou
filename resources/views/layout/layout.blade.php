@@ -16,6 +16,8 @@
     <script src="{{ URL::asset('js/select2.full.min.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
 
+    @yield('scripts')
+
 </head>
 <body>
     @include('partials/header')

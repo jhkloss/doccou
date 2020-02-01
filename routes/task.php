@@ -16,3 +16,5 @@ Route::get('task/view/{id}', function($id){
 Route::post('/task/add', 'Task\TaskController@add')->middleware('auth');
 
 Route::post('/task/edit/save', 'Task\TaskController@edit')->name('formEditTask')->middleware('auth');
+
+Route::post('/task/dockerfile/save/{taskID}', 'Task\TaskController@uploadDockerfile')->name('uploadDockerfile')->middleware('auth');
