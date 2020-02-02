@@ -75,7 +75,10 @@
                             Stop all Containers
                         </button>
                     </div>
-                    <pre></pre>
+                    <pre>
+                        Status:
+                            {{ var_dump($imageInfo)  }}
+                    </pre>
                 </article>
             </div>
         </div>

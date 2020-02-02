@@ -6,6 +6,7 @@ use App\Container;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Task\TaskController;
 use App\Services\DockerService;
+use App\Services\MessageService;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,15 +15,18 @@ use PharData;
 class DockerController extends Controller
 {
     private $dockerService;
+    private $messageService;
 
     /**
      * Create a new controller instance.
      *
      * @param DockerService $dockerService
+     * @param MessageService $messageService
      */
-    public function __construct(DockerService $dockerService)
+    public function __construct(DockerService $dockerService, MessageService $messageService)
     {
         $this->dockerService = $dockerService;
+        $this->messageService = $messageService;
     }
 
     /**
@@ -108,22 +112,25 @@ class DockerController extends Controller
             if($dockerfileArchive)
             {
                 $response = $this->dockerService->createImage($dockerfileArchive);
-                if($response['response'] !== false)
+                if($response !== false)
                 {
-                    TaskController::saveImage($taskID, $response['tag']);
-                    return 'Successfully created the Image ' . $response['tag'];
+                    $id = preg_replace( "/\r|\n/", "", $response['id']);
+                    TaskController::saveImage($taskID, $response['tag'], $id);
+                    $message = 'Successfully created the Image ' . $response['tag'];
+                    return $this->messageService->successMessage($message);
                 }
             }
         }
 
-        return 'There has been an error. Message: ' . var_dump($response);
+        $message = 'Operation not successful - Please try again.';
+        return $this->messageService->errorMessage($message);
     }
 
     public function createContainer(Request $request)
     {
         $taskID = $request->post('taskID');
         $task = Task::find($taskID);
-        $response = $this->dockerService->createContainer($task->dockerimage);
+        return $this->dockerService->createContainer($task->imageTag);
     }
 
     public function createCourseContainers(Request $request)
@@ -131,13 +138,13 @@ class DockerController extends Controller
         $taskID = $request->post('taskID');
         $task = Task::find($taskID);
 
-        $courseMembers = $task->course->members;
+        $courseMembers = $task->course->members->all();
 
         if($task && $courseMembers)
         {
             foreach ($courseMembers as $member)
             {
-                $response = $this->dockerService->createContainer($task->dockerimage);
+                $response = $this->dockerService->createContainer($task->imageTag);
 
                 if($response && $response['response'] !== false)
                 {
@@ -145,8 +152,25 @@ class DockerController extends Controller
                     $container->user_id = $member->id;
                     $container->handle = $response['name'];
                     $container->save();
+
+                    $message = 'Successfully created containers for all course members.';
+                    return $this->messageService->successMessage($message);
                 }
             }
         }
+
+        $message = 'Could not create containers. Error: ' . var_dump($response);
+        return $this->messageService->errorMessage($message);
+    }
+
+    public function getImageInfo(string $taskID)
+    {
+        $task = Task::find($taskID);
+        if($task && $task->imageId)
+        {
+            return $this->dockerService->getImageInfo($task->imageId);
+        }
+
+        return '';
     }
 }

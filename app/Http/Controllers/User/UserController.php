@@ -54,7 +54,7 @@ class UserController extends Controller
 
     static function getUserCourses()
     {
-        return User::find(Auth::id())->courses;
+        return User::find(Auth::id())->courses->all();
     }
 
     static function getUserTasks()
@@ -69,4 +69,10 @@ class UserController extends Controller
 
         return $tasks;
     }
+
+    static function  getUserContainers()
+    {
+        return User::find(Auth::id())->containers->all();
+    }
+
 }

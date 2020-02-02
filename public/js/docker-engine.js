@@ -9,6 +9,7 @@ $(document).ready(function(){
             data: {
                 taskID:taskID,
             },
+            success: function(response){ ShowMessage(response) },
         });
     });
 
@@ -19,6 +20,7 @@ $(document).ready(function(){
             data: {
                 taskID:taskID,
             },
+            success: function(response){ ShowMessage(response) },
         });
     });
 });

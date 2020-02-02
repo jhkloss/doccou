@@ -32,6 +32,12 @@
         @include('partials/login')
     @endif
 
+    @section('message')
+        <div id="message-container" style="display: none">
+
+        </div>
+    @show
+
     @include('partials/footer')
 </body>
 </html>

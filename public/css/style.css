@@ -28,3 +28,11 @@
 .notification a:not(.button):not(.dropdown-item) {
     text-decoration: none;
 }
+
+#message-container {
+    position: fixed;
+    right: 25%;
+    bottom: 50px;
+    height: 100px;
+    width: 400px;
+}

@@ -1,3 +1,5 @@
 <div class="box">
-    <p><strong>{{ $item->name }}</strong></p>
+    <a href="{{ route('viewCourse', $item->id) }}">
+        <p><strong>{{ $item->name }}</strong></p>
+    </a>
 </div>

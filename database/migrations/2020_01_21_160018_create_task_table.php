@@ -19,7 +19,8 @@ class CreateTaskTable extends Migration
             $table->string('name')->nullable(false);
             $table->text('description')->nullable(true);
             $table->string('dockerfile')->nullable(true);
-            $table->string('dockerimage')->nullable(true);
+            $table->string('imageTag')->nullable(true);
+            $table->string('imageId')->nullable(true);
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('course');

@@ -90,3 +90,21 @@ function AddMembers(users, courseID)
         }
     });
 }
+
+function ShowMessage(message)
+{
+    let messageContainer = $('#message-container');
+    messageContainer.html(message);
+    messageContainer.fadeIn();
+
+    setTimeout(function () {
+        HideMessage();
+    },4000);
+}
+
+function HideMessage()
+{
+    let messageContainer = $('#message-container');
+    messageContainer.fadeOut();
+    messageContainer.html('');
+}

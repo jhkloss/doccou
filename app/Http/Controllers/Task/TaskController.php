@@ -76,13 +76,14 @@ class TaskController extends Controller
         }
     }
 
-    static function saveImage($taskID, $imageID)
+    static function saveImage($taskID, $imageTag, $imageID)
     {
         $Task = Task::find($taskID);
 
         if($Task)
         {
-            $Task->dockerimage = $imageID;
+            $Task->imageTag = $imageTag;
+            $Task->imageId = $imageID;
             $Task->save();
         }
     }
@@ -90,7 +91,7 @@ class TaskController extends Controller
     static function hasImage($taskID)
     {
         $task = Task::find($taskID);
-        if($task->dockerimage)
+        if($task->imageId)
         {
             return true;
         }

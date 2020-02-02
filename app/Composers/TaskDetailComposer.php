@@ -11,17 +11,28 @@ class TaskDetailComposer
 {
     private $id;
     private $hasDockerimage;
+    private $dockerfile;
+    private $dockerController;
+    private $imageInfo;
 
-    public function __construct()
+    public function __construct(DockerController $dockerController)
     {
-        $this->id = $this->id = Route::current()->parameter('id');
+        $this->dockerController = $dockerController;
+
+        $this->id = Route::current()->parameter('id');
+
         $this->hasDockerimage = TaskController::hasImage($this->id);
+
+        $this->dockerfile = DockerController::getDockerfile($this->id);
+
+        $this->imageInfo = $dockerController->getImageInfo($this->id);
     }
 
     public function compose(View $view)
     {
         return $view
-            ->with('dockerfile', DockerController::getDockerfile($this->id))
-            ->with('hasDockerimage', $this->hasDockerimage);
+            ->with('dockerfile', $this->dockerfile)
+            ->with('hasDockerimage', $this->hasDockerimage)
+            ->with('imageInfo', $this->imageInfo);
     }
 }

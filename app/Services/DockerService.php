@@ -41,7 +41,7 @@ class DockerService
      * @param array $query
      * @return string
      */
-    private function getAPIURI(string $endPoint, array $query)
+    private function getAPIURI(string $endPoint, array $query = [])
     {
         $uri = 'http:/' . self::DOCKER_API_VERSION . '/' . $endPoint;
 
@@ -146,14 +146,24 @@ class DockerService
         $response = $this->client->send($request);
 
         // Cleanup
-        //unlink($dockerArchive);
+        fclose($body);
+        unlink($dockerArchive);
 
-        $result['response'] = $this->getResponseBodyJSON($response);
-        $result['tag'] = $tag;
+        if($this->getResponseCode($response) === 200)
+        {
+            $result['id'] = $this->getResponseBodyJSON($response)->stream;
+            $result['tag'] = $tag;
 
-        return $result;
+            return $result;
+        }
+
+        return false;
     }
 
+    /**
+     * @param $imageID
+     * @return mixed
+     */
     public function createContainer($imageID)
     {
         $name = $this->getContainerName();
@@ -184,17 +194,19 @@ class DockerService
         return $result;
     }
 
-    public function createContainers()
+    /**
+     * @param $imageID
+     * @return bool|mixed
+     */
+    public function getImageInfo($imageID)
     {
-
+        $uri = $this->getAPIURI('images/' . $imageID . '/json');
+        $request = new Request('GET', $uri);
+        $response = $this->client->send($request);
+        return $this->getResponseBodyJSON($response);
     }
 
     public function deleteContainer()
-    {
-
-    }
-
-    public function deleteContainers()
     {
 
     }

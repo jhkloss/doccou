@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Course', 'course_user',  'user_id', 'course_id');
     }
+
+    public function containers()
+    {
+        return $this->belongsTo('App\Container', 'id', 'user_id');
+    }
 }
