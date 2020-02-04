@@ -11,6 +11,6 @@ class Container extends Model
 
     public function user()
     {
-        $this->belongsTo('App\User', 'id', 'user_id');
+        $this->belongsTo('App\User',  'user_id', 'id');
     }
 }

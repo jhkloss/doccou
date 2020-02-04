@@ -206,9 +206,25 @@ class DockerService
         return $this->getResponseBodyJSON($response);
     }
 
-    public function deleteContainer()
+    public function getContainerInfo($containerName)
     {
+        $uri = $this->getAPIURI('containers/' . $containerName . '/json');
+        $request = new Request('GET', $uri);
+        $response = $this->client->send($request);
+        return $this->getResponseBodyJSON($response);
+    }
 
+    public function deleteContainer(string $handle)
+    {
+        $uri = $this->getAPIURI('containers/' . $handle);
+
+        $query = [
+            'force' => true,
+        ];
+
+        $request = new Request('DELETE', $uri, $query);
+        $response = $this->client->send($request);
+        return $this->getResponseBodyJSON($response);
     }
 
     public function startContainer()

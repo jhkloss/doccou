@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Services\DockerService;
+use App\Services\MessageService;
 use Illuminate\Support\ServiceProvider;
 
-class MessageServiceProviderServiceProvider extends ServiceProvider
+class MessageServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -16,7 +16,7 @@ class MessageServiceProviderServiceProvider extends ServiceProvider
     {
         $this->app->singleton('App\Services\MessageService', function($app)
         {
-            return new \MessageService();
+            return new MessageService();
         });
     }
 

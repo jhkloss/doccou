@@ -20,24 +20,40 @@
 
 </head>
 <body>
-    @include('partials/header')
 
-    <div class="main-content">
-        <div class="container">
-            @yield('content')
+@include('partials/header')
+
+<div class="tile is-ancestor is-horizontal">
+
+    <div class="tile is-parent is-2">
+        <div class="tile is-child">
+            @include('partials/menu')
         </div>
     </div>
 
-    @if(!Auth::check())
-        @include('partials/login')
-    @endif
-
-    @section('message')
-        <div id="message-container" style="display: none">
-
+    <div class="tile is-parent is-9">
+        <div class="tile is-child">
+            <div class="main-content">
+                <div class="container">
+                    @yield('content')
+                </div>
+            </div>
         </div>
-    @show
+    </div>
 
-    @include('partials/footer')
+</div>
+
+
+@if(!Auth::check())
+    @include('partials/login')
+@endif
+
+@section('message')
+    <div id="message-container" style="display: none">
+
+    </div>
+@show
+
+@include('partials/footer')
 </body>
 </html>

@@ -53,7 +53,13 @@
 
                     </form>
                     <p class="subtitle">Current Dockerfile Contents:</p>
-                    <pre>{{ $dockerfile }}</pre>
+                    <pre>
+                        @if($dockerfile)
+                            {{ $dockerfile }}
+                        @else
+                            No Dockerfile uploaded yet.
+                        @endif
+                    </pre>
                 </article>
             </div>
         </div>
@@ -63,22 +69,52 @@
         <div class="tile is-ancestor ">
             <div class="tile is-parent is-vertical">
                 <article class="tile is-child notification is-info">
-                    <p class="title">Docker Engine</p>
+                    <p class="title">Image</p>
                     <div class="buttons">
-                        <button id="create-image-btn" class="button is-success">
+                        <button id="create-image-btn" class="button is-success" @if(!$dockerfile) disabled @endif()>
                             Create Image from Dockerfile
-                        </button>
-                        <button id="create-container-btn" class="button is-success" @if(!$hasDockerimage) disabled @endif()>
-                            Create Course Containers
-                        </button>
-                        <button id="" class="button is-danger" @if(!$hasDockerimage) disabled @endif()>
-                            Stop all Containers
                         </button>
                     </div>
                     <pre>
-                        Status:
-                            {{ var_dump($imageInfo)  }}
+                        <ul>
+                            <li><strong>Image Status:</strong></li>
+                            @if($imageInfo)
+                                <li>ImageID: {{ $imageInfo->Id }}</li>
+                                <li>Tag: {{ $imageInfo->RepoTags[0] }}</li>
+                                <li>Created: {{ $imageInfo->Created }}</li>
+                            @else
+                                <li><strong>Not created yet</strong></li>
+                            @endif
+                        </ul>
                     </pre>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="tile is-ancestor ">
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-info">
+                    <p class="title">Container</p>
+                    <div class="buttons">
+                        <button id="create-container-btn" class="button is-success" @if(!$hasDockerimage) disabled @endif()>
+                            Create Course Containers
+                        </button>
+                    </div>
+
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th>Container</th>
+                            <th>Member</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {!! $containerInfo !!}
+                        </tbody>
+                    </table>
+
                 </article>
             </div>
         </div>

@@ -36,3 +36,7 @@
     height: 100px;
     width: 400px;
 }
+
+#menu-box {
+    position: fixed;
+}

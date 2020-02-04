@@ -1,7 +1,6 @@
 <?php
 
 use App\Task;
-use Illuminate\Support\Facades\Route;
 
 Route::get('task/edit/{id}', function($id){
     return view('task/edit-task')
@@ -9,8 +8,16 @@ Route::get('task/edit/{id}', function($id){
 })->middleware('auth')->name('editTask');
 
 Route::get('task/view/{id}', function($id){
-    return view('task/task-detail')
-        ->with('task', Task::find($id));
+    if(\App\Http\Controllers\Task\TaskController::canEdit($id))
+    {
+        return view('task/task-detail')
+            ->with('task', Task::find($id));
+    }
+    else
+    {
+        return view('task/task-info')
+            ->with('task', Task::find($id));
+    }
 })->middleware('auth')->name('viewTask');
 
 Route::post('/task/add', 'Task\TaskController@add')->middleware('auth');
