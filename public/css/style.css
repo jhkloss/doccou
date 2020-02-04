@@ -40,3 +40,7 @@
 #menu-box {
     position: fixed;
 }
+
+.container {
+    margin-top: 30px;
+}

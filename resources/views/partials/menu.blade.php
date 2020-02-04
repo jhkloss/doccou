@@ -1,36 +1,54 @@
-<div id="menu-box" class="box">
-    <aside class="menu">
-        <p class="menu-label">
-            General
-        </p>
-        <ul class="menu-list">
-            <li><a>Dashboard</a></li>
-            <li><a>Customers</a></li>
-        </ul>
-        <p class="menu-label">
-            Administration
-        </p>
-        <ul class="menu-list">
-            <li><a>Team Settings</a></li>
-            <li>
-                <a class="is-active">Manage Your Team</a>
-                <ul>
-                    <li><a>Members</a></li>
-                    <li><a>Plugins</a></li>
-                    <li><a>Add a member</a></li>
-                </ul>
-            </li>
-            <li><a>Invitations</a></li>
-            <li><a>Cloud Storage Environment Settings</a></li>
-            <li><a>Authentication</a></li>
-        </ul>
-        <p class="menu-label">
-            Transactions
-        </p>
-        <ul class="menu-list">
-            <li><a>Payments</a></li>
-            <li><a>Transfers</a></li>
-            <li><a>Balance</a></li>
-        </ul>
-    </aside>
+<div class="container">
+    <article>
+
+
+    <div id="menu-box" class="box">
+        <aside class="menu">
+            <p class="menu-label">
+                General
+            </p>
+            <ul class="menu-list">
+                <li class="is-disabled"><a href="{{ URL::to('/') }}">Doccou Home</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                @if(Auth::check())
+                    <li><a href="">Your Profile</a></li>
+                @endif
+            </ul>
+            @if(Auth::check())
+            <p class="menu-label">
+                Course Administration
+            </p>
+            <ul class="menu-list">
+                <li><a>Courses</a></li>
+                <li><a class="">Tasks</a></li>
+                <li><a class="">Containers</a></li>
+            </ul>
+            <p class="menu-label">
+                Latest Activity
+            </p>
+            <ul class="menu-list">
+                <li><a>Task 1</a></li>
+                <li><a>Task 2</a></li>
+                <li><a>Task 3</a></li>
+            </ul>
+            @endif
+            <p class="menu-label">
+                About
+            </p>
+            <ul class="menu-list">
+                <li><a>Docker</a></li>
+                <li><a>Doccou</a></li>
+            </ul>
+            <p class="menu-label">
+                More
+            </p>
+            <ul class="menu-list">
+                <li><a>Report an Issue</a></li>
+                <li><a>Contact</a></li>
+                <li><a>Imprint</a></li>
+            </ul>
+        </aside>
+    </div>
+    </article>
 </div>
+

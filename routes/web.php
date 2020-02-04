@@ -23,5 +23,5 @@ Route::get('/dashboard', function () {
 })->name('dashboard')->middleware('auth');
 
 
-Route::post('/getusers', 'User\UserController@getUsersJSON')->middleware('auth');
+Route::post('/getusers', 'User\UserController@getUsersJSON');
 

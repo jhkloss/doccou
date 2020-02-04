@@ -22,21 +22,21 @@ class UserController extends Controller
         $users = [];
         $users['results'] = [];
 
-        $searchterm = $request->post('term');
+        $searchterm = $request->post('search');
         $courseID = $request->post('courseID');
 
         if($searchterm)
         {
-            $usersDB = DB::table('users')
-                ->where('name', 'like', '%' . $searchterm . '%')
-                ->get();
+            $usersDB = User::where('name', 'LIKE', '%' . $searchterm . '%')->get();
         }
         else
         {
             $usersDB = User::all('id', 'name');
         }
 
-        foreach ( $usersDB as $user)
+        //dump($usersDB);
+
+        foreach ($usersDB as $user)
         {
             if(!CourseController::isPartOfCourse($user->id, $courseID))
             {

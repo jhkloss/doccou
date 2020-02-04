@@ -1,4 +1,4 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ URL::to('/') }}">
             <img src="{{ asset('gfx/Doccou.svg') }}" width="112" height="50">
@@ -14,56 +14,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-
-
-
-            @if(Auth::check())
-            <a href="{{ route('dashboard') }}" class="navbar-item">
-                Dashboard
-            </a>
-
-            <a href="{{ route('courses') }}" class="navbar-item">
-                Courses
-            </a>
-
-            <a class="navbar-item">
-                Tasks
-            </a>
-
-            <a class="navbar-item">
-                Profile
-            </a>
-            @else
-
-            <a class="navbar-item">
-                About Doccou
-            </a>
-
-            @endif
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    More
-                </a>
-
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        About
-                    </a>
-                    <a class="navbar-item">
-                        Jobs
-                    </a>
-                    <a class="navbar-item">
-                        Contact
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                        Report an issue
-                    </a>
-                </div>
-            </div>
         </div>
-
         <div class="navbar-end">
             @if(Auth::check())
                 <div class="navbar-item">
