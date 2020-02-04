@@ -1,8 +1,6 @@
 <div class="container">
-    <article>
-
-
     <div id="menu-box" class="box">
+        <img src="{{ asset('gfx/Doccou.svg') }}" width="112" height="50">
         <aside class="menu">
             <p class="menu-label">
                 General
@@ -19,7 +17,7 @@
                 Course Administration
             </p>
             <ul class="menu-list">
-                <li><a>Courses</a></li>
+                <li><a href="{{ route('courses') }}">Courses</a></li>
                 <li><a class="">Tasks</a></li>
                 <li><a class="">Containers</a></li>
             </ul>
@@ -39,16 +37,31 @@
                 <li><a>Docker</a></li>
                 <li><a>Doccou</a></li>
             </ul>
-            <p class="menu-label">
-                More
-            </p>
+            <p class="menu-label">Account</p>
             <ul class="menu-list">
-                <li><a>Report an Issue</a></li>
-                <li><a>Contact</a></li>
-                <li><a>Imprint</a></li>
+                @if(Auth::check())
+                    <li>
+                        Logged in as <strong>{{ Auth::user()->name }}</strong>
+                        <div id="logout" class="buttons is-left">
+                            <a href="{{ route('logout')  }}" class="button is-danger is-outlined">
+                                <strong>Logout</strong>
+                            </a>
+                        </div>
+                    </li>
+                @else
+                <li>
+                    <div class="buttons is-centered">
+                        <a href="{{ route('register')  }}" class="button is-primary">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a id="login-btn" class="button is-light">
+                            Log in
+                        </a>
+                    </div>
+                </li>
+                @endif
             </ul>
         </aside>
     </div>
-    </article>
 </div>
 

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('font-awesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/Chart.css') }}">
 
     <script src="{{ URL::asset('js/jquery.js') }}"></script>
     <script src="{{ URL::asset('js/jquery-ui.min.js') }}"></script>
@@ -21,24 +22,18 @@
 </head>
 <body>
 
-@include('partials/header')
-
 <div class="tile is-ancestor is-horizontal">
 
     <div class="tile is-parent is-3">
-        <div class="tile is-child">
             @include('partials/menu')
-        </div>
     </div>
 
     <div class="tile is-parent is-8">
-        <div class="tile is-child">
             <div class="main-content">
-                <div class="container is-fluid">
+                <div class="container">
                     @yield('content')
                 </div>
             </div>
-        </div>
     </div>
 
 </div>

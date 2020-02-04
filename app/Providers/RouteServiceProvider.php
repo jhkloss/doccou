@@ -53,6 +53,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapTaskRoutes();
 
         $this->mapDockerRoutes();
+
+        $this->mapChartRoutes();
     }
 
     /**
@@ -95,6 +97,13 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/docker.php'));
+    }
+
+    protected function mapChartRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/chart.php'));
     }
 
     /**

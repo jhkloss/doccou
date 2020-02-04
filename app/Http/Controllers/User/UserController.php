@@ -72,7 +72,7 @@ class UserController extends Controller
 
     static function  getUserContainers()
     {
-        return User::find(Auth::id())->containers->all();
+        return User::find(Auth::id())->containers()->get();
     }
 
 }

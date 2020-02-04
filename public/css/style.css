@@ -39,8 +39,13 @@
 
 #menu-box {
     position: fixed;
+    height: 100%;
 }
 
 .container {
     margin-top: 30px;
+}
+
+#logout {
+    margin-top: 15px;
 }
