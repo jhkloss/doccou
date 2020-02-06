@@ -287,4 +287,78 @@ class DockerController extends Controller
 
         return $html;
     }
+
+    /**
+     * @param $taskID
+     * @param $userID
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function startContainer($taskID, $userID)
+    {
+        $container = $this->getContainerForTaskMember($taskID, $userID);
+
+        if($container !== false)
+        {
+            $response = $this->dockerService->startContainer($container->handle);
+
+            if($response)
+            {
+                switch ($response['code'])
+                {
+                    case 204:
+                        $message = 'Container ' . $container->handle . ' was successfully started.';
+                        return $this->messageService->successMessage($message);
+                        break;
+                    case 304:
+                        $message = 'Container ' . $container->handle . ' is already running.';
+                        return $this->messageService->infoMessage($message);
+                        break;
+                    case 404:
+                        $message = 'Container ' . $container->handle . ' does not exist.';
+                        return $this->messageService->errorMessage($message);
+                        break;
+                }
+            }
+        }
+
+        $message = 'Internal Server Error.';
+        return $this->messageService->errorMessage($message);
+    }
+
+    /**
+     * @param $taskID
+     * @param $userID
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function stopContainer($taskID, $userID)
+    {
+        $container = $this->getContainerForTaskMember($taskID, $userID);
+
+        if($container !== false)
+        {
+            $response = $this->dockerService->stopContainer($container->handle);
+
+            if($response)
+            {
+                switch ($response['code'])
+                {
+                    case 204:
+                        $message = 'Container ' . $container->handle . ' was successfully stopped.';
+                        return $this->messageService->successMessage($message);
+                        break;
+                    case 304:
+                        $message = 'Container ' . $container->handle . ' is already stopped.';
+                        return $this->messageService->infoMessage($message);
+                        break;
+                    case 404:
+                        $message = 'Container ' . $container->handle . ' does not exist.';
+                        return $this->messageService->errorMessage($message);
+                        break;
+                }
+            }
+        }
+
+        $message = 'Internal Server Error.';
+        return $this->messageService->errorMessage($message);
+    }
 }

@@ -2,6 +2,10 @@
 
 use App\Task;
 
+Route::get('tasks', function(){
+    return view('task/task-overview');
+})->middleware('auth')->name('tasks');
+
 Route::get('task/edit/{id}', function($id){
     return view('task/edit-task')
         ->with('task', Task::find($id));

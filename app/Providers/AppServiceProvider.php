@@ -33,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
         View::composer('dashboard/dashboard', 'App\Composers\DashboardComposer');
         View::composer('task/task-detail', 'App\Composers\TaskDetailComposer');
         View::composer('task/task-info', 'App\Composers\TaskViewComposer');
+        View::composer('task/task-overview', 'App\Composers\TaskOverviewComposer');
     }
 }

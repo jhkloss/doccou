@@ -227,13 +227,27 @@ class DockerService
         return $this->getResponseBodyJSON($response);
     }
 
-    public function startContainer()
+    public function startContainer($handle)
     {
+        $uri = $this->getAPIURI('containers/' . $handle . '/start');
 
+        $request = new Request('POST', $uri);
+        $response = $this->client->send($request);
+
+        $return['code'] = $this->getResponseCode($response);
+        $return['message'] = $this->getResponseBodyJSON($response)->message;
+        return $return;
     }
 
-    public function stopContainer()
+    public function stopContainer($handle)
     {
+        $uri = $this->getAPIURI('containers/' . $handle . '/stop');
 
+        $request = new Request('POST', $uri);
+        $response = $this->client->send($request);
+
+        $return['code'] = $this->getResponseCode($response);
+        $return['message'] = $this->getResponseBodyJSON($response)->message;
+        return $return;
     }
 }

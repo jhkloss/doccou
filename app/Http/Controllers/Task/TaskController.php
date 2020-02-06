@@ -20,6 +20,10 @@ class TaskController extends Controller
     {
     }
 
+    /**
+     * @param Request $request
+     * @return false|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     */
     public function add(Request $request)
     {
         $courseID = $request->post('courseID');
@@ -37,6 +41,10 @@ class TaskController extends Controller
         return json_encode(false);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function edit(Request $request)
     {
         $taskID = $request->post('taskID');
@@ -52,6 +60,11 @@ class TaskController extends Controller
         return redirect()->route('viewCourse', $Task->course_id);
     }
 
+    /**
+     * @param Request $request
+     * @param $taskID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function uploadDockerfile(Request $request, $taskID)
     {
         $path = $request->file('dockerfile')->store('dockerfiles');
@@ -76,6 +89,11 @@ class TaskController extends Controller
         }
     }
 
+    /**
+     * @param $taskID
+     * @param $imageTag
+     * @param $imageID
+     */
     static function saveImage($taskID, $imageTag, $imageID)
     {
         $Task = Task::find($taskID);
@@ -88,6 +106,10 @@ class TaskController extends Controller
         }
     }
 
+    /**
+     * @param $taskID
+     * @return bool
+     */
     static function hasImage($taskID)
     {
         $task = Task::find($taskID);
@@ -98,6 +120,10 @@ class TaskController extends Controller
         return false;
     }
 
+    /**
+     * @param $taskID
+     * @return bool
+     */
     static function canEdit($taskID)
     {
         $courseID = Task::find($taskID)->course_id;
@@ -112,16 +138,27 @@ class TaskController extends Controller
         return false;
     }
 
+    /**
+     * @return Task[]|\Illuminate\Database\Eloquent\Collection
+     */
     static function getAll()
     {
         return Task::all();
     }
 
+    /**
+     * @param $taskID
+     * @return mixed
+     */
     static function get($taskID)
     {
         return Task::find($taskID);
     }
 
+    /**
+     * @param $courseID
+     * @return mixed
+     */
     static function getAllForCourse($courseID)
     {
         return Course::find($courseID)->tasks;
