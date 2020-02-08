@@ -3,9 +3,6 @@
 namespace App\Composers;
 
 use App\Http\Controllers\Course\CourseController;
-use App\Http\Controllers\Docker\DockerController;
-use App\Http\Controllers\Task\TaskController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 
 class MenuComposer
