@@ -1,5 +1,6 @@
 .main-content {
     min-height: 800px;
+    width: 100%;
 }
 
 .button.floating {
@@ -47,4 +48,8 @@
 
 #logout {
     margin-top: 15px;
+}
+
+pre, code {
+    white-space: pre-line;
 }

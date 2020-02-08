@@ -9,9 +9,11 @@ use App\Services\DockerService;
 use App\Services\MessageService;
 use App\Task;
 use App\User;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use PharData;
 
 class DockerController extends Controller
@@ -149,7 +151,7 @@ class DockerController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function createCourseContainers(Request $request)
     {
@@ -289,13 +291,12 @@ class DockerController extends Controller
     }
 
     /**
-     * @param $taskID
-     * @param $userID
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     * @return Factory|View
      */
-    public function startContainer($taskID, $userID)
+    public function startContainer(Request $request)
     {
-        $container = $this->getContainerForTaskMember($taskID, $userID);
+        $container = $this->getContainerForTaskMember($request->post('taskID'), Auth::id());
 
         if($container !== false)
         {
@@ -326,13 +327,12 @@ class DockerController extends Controller
     }
 
     /**
-     * @param $taskID
-     * @param $userID
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     * @return Factory|View
      */
-    public function stopContainer($taskID, $userID)
+    public function stopContainer(Request $request)
     {
-        $container = $this->getContainerForTaskMember($taskID, $userID);
+        $container = $this->getContainerForTaskMember($request->post('taskID'), Auth::id());
 
         if($container !== false)
         {

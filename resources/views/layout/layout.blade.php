@@ -24,11 +24,11 @@
 
 <div class="tile is-ancestor is-horizontal">
 
-    <div class="tile is-parent is-3">
+    <div class="tile is-parent is-2">
             @include('partials/menu')
     </div>
 
-    <div class="tile is-parent is-8">
+    <div class="tile is-parent is-9">
             <div class="main-content">
                 <div class="container">
                     @yield('content')

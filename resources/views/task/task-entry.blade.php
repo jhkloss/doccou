@@ -4,7 +4,7 @@
             <article class="media">
                 <div class="media-left">
                     <figure class="image is-64x64">
-                        <img src="{{ asset('/gfx/graduation-cap-solid.svg') }}" alt="Image">
+                        <img src="{{ asset('/gfx/list.svg') }}" alt="Image">
                         {{-- Licensed under Creative Commons Attribution 4.0 by Fontawesome https://fontawesome.com/license --}}
                     </figure>
                 </div>
@@ -23,9 +23,9 @@
                         <div class="level-left">
                             @if($task->canEdit)
                                 <a href="{{ route('editTask', $task->id) }}" class="level-item" aria-label="reply">
-                            <span class="icon is-small">
-                                <i class="fas fa-edit" aria-hidden="true"></i>
-                            </span>
+                                    <span class="icon is-small">
+                                        <i class="fas fa-edit" aria-hidden="true"></i>
+                                    </span>
                                 </a>
                             @endif
                         </div>

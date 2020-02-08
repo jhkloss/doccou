@@ -34,7 +34,7 @@ class TaskDetailComposer
     public function compose(View $view)
     {
         return $view
-            ->with('dockerfile', $this->dockerfile)
+            ->with('dockerfile', trim($this->dockerfile))
             ->with('hasDockerimage', $this->hasDockerimage)
             ->with('imageInfo', $this->imageInfo)
             ->with('containerInfo', $this->containerInfo);

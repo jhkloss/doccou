@@ -19,6 +19,13 @@ $(document).ready(function () {
         AddTask(courseID);
     });
 
+    // File Input
+
+    $('.file-input').on('change', function () {
+        let name = $(this).val().split('\\').pop();
+        $('.file-name').html(name);
+    });
+
     // Handle Member Actions /////
 
     $('body').on('click' ,'.delete-member' , function () {
@@ -99,6 +106,7 @@ function ShowMessage(message)
 
     setTimeout(function () {
         HideMessage();
+        location.reload();
     },4000);
 }
 

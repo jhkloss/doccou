@@ -1,5 +1,5 @@
 <div class="box">
-    <a href="">
-        <p><strong>{{ $container->handle }}</strong></p>
+    <a href="{{ route('viewTask', $container->task->id) }}">
+        <p><strong>{{ $container->handle }}</strong> <small>Task: {{ $container->task->name }}</small></p>
     </a>
 </div>

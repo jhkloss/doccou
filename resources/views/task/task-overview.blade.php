@@ -14,7 +14,5 @@
             @endif
         </div>
 
-        {{ $tasks->links() }}
-
     </section>
 @endsection

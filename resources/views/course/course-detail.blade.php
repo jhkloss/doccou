@@ -4,7 +4,7 @@
     <section class="tile-course">
         <div class="tile is-ancestor ">
             <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-info">
+                <article class="tile is-child notification">
                     <p class="title">{{ $course->name }}</p>
                     <p class="subtitle">Course Details</p>
                 </article>
@@ -17,7 +17,7 @@
             <div class="tile is-vertical is-8">
                 <div class="tile">
                     <div class="tile is-parent">
-                        <article class="tile is-child  notification is-info">
+                        <article class="tile is-child  notification">
                             <p class="title">Description</p>
                             <p class="content">
                                 {{ $course->description }}
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="tile is-parent">
-                        <article class="tile is-child notification is-info">
+                        <article class="tile is-child notification">
                             <p class="title">Info</p>
 
                             <p><strong>Created at:</strong></p>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="tile is-parent">
-                    <article class="tile is-child notification is-warning">
+                    <article class="tile is-child notification">
                         <p class="title">Members</p>
                         <p class="subtitle">Manage who is part of this course.</p>
                         <div class="tags member-list">
@@ -79,7 +79,7 @@
             </div>
 
             <div class="tile is-parent">
-                <article class="tile is-child notification is-success">
+                <article class="tile is-child notification">
                     <p class="title">Tasks</p>
                     <p class="subtitle">Here are all the Tasks that belong to this course.</p>
 

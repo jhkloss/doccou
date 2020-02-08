@@ -1,6 +1,8 @@
 <div class="container">
     <div id="menu-box" class="box">
-        <img src="{{ asset('gfx/Doccou.svg') }}" width="112" height="50">
+        <a href="{{ URL::to('/') }}">
+            <img src="{{ asset('gfx/Doccou.svg') }}" width="112" height="50">
+        </a>
         <aside class="menu">
             <p class="menu-label">
                 General
@@ -8,6 +10,7 @@
             <ul class="menu-list">
                 <li class="is-disabled"><a href="{{ URL::to('/') }}">Doccou Home</a></li>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li><a href="">Your Profile</a></li>
             </ul>
             @if(Auth::check())
             <p class="menu-label">
@@ -15,7 +18,7 @@
             </p>
             <ul class="menu-list">
                 <li><a href="{{ route('courses') }}">Courses</a></li>
-                <li><a class="{{ route('tasks') }}">Tasks</a></li>
+                <li><a href="{{ route('tasks') }}">Tasks</a></li>
                 <li><a class="">Containers</a></li>
             </ul>
             <p class="menu-label">
@@ -35,7 +38,6 @@
             <p class="menu-label">Account</p>
             <ul class="menu-list">
                 @if(Auth::check())
-                    <li><a href="">Your Profile</a></li>
                     <li>
                         Logged in as <strong>{{ Auth::user()->name }}</strong>
                         <div id="logout" class="buttons is-left">

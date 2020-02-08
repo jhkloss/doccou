@@ -8,9 +8,10 @@
     <section class="tile-course">
         <div class="tile is-ancestor ">
             <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-info">
+                <article class="tile is-child notification">
                     <p class="title">{{ $task->name }}</p>
-                    <p class="subtitle">{{ $task->description }}</p>
+                    <p class="subtitle">Course: <a href="{{ route('viewCourse', $task->course->id ) }}">{{ $task->course->name }}</a></p>
+                    <p class="content">{{ $task->description }}</p>
                 </article>
             </div>
         </div>
@@ -19,7 +20,7 @@
     <section class="tile-dockerfile">
         <div class="tile is-ancestor ">
             <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-info">
+                <article class="tile is-child notification">
                     <p class="title">Dockerfile</p>
                     <p class="subtitle">Update the Dockerfile for this Task:</p>
                     <form action="{{ route('uploadDockerfile', $task->id) }}" method="POST"
@@ -43,7 +44,7 @@
                             <div class="field">
                                 <p class="control">
                                     <div class="buttons">
-                                        <button class="button is-success" type="submit">
+                                        <button id="uploadDockerfile" class="button is-success" type="submit">
                                             Upload
                                         </button>
                                     </div>
@@ -55,7 +56,7 @@
                     <p class="subtitle">Current Dockerfile Contents:</p>
                     <pre>
                         @if($dockerfile)
-                            {{ $dockerfile }}
+                             {!! $dockerfile !!}
                         @else
                             No Dockerfile uploaded yet.
                         @endif
@@ -68,7 +69,7 @@
     <section>
         <div class="tile is-ancestor ">
             <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-info">
+                <article class="tile is-child notification">
                     <p class="title">Image</p>
                     <div class="buttons">
                         <button id="create-image-btn" class="button is-success" @if(!$dockerfile) disabled @endif()>
@@ -95,7 +96,7 @@
     <section>
         <div class="tile is-ancestor ">
             <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-info">
+                <article class="tile is-child notification">
                     <p class="title">Container</p>
                     <div class="buttons">
                         <button id="create-container-btn" class="button is-success" @if(!$hasDockerimage) disabled @endif()>

@@ -2,18 +2,25 @@
 
 namespace App\Composers;
 
-use App\Http\Controllers\Task\TaskController;
-use App\Task;
+use App\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 class TaskOverviewComposer
 {
-    private $tasks;
+    private $tasks = [];
 
     public function __construct()
     {
-        $this->tasks = Task::where('user_id', Auth::id())->paginate(10);
+        $courses = User::find(Auth::id())->courses;
+
+        foreach ($courses as $course)
+        {
+            foreach ($course->tasks as $task)
+            {
+                $this->tasks[] = $task;
+            }
+        }
     }
 
     public function compose(View $view)

@@ -1,4 +1,4 @@
-<span class="tag is-large">
+<span class="tag is-large is-white">
     <strong>{{ $member->name }}</strong>
     <small>{{ $member->email }}</small>
     @if($canEdit)

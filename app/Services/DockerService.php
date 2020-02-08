@@ -151,10 +151,14 @@ class DockerService
 
         if($this->getResponseCode($response) === 200)
         {
-            $result['id'] = $this->getResponseBodyJSON($response)->stream;
-            $result['tag'] = $tag;
+            $responseBody = $this->getResponseBodyJSON($response);
 
-            return $result;
+            if($responseBody !== false)
+            {
+                $result['id'] = $responseBody->stream;
+                $result['tag'] = $tag;
+                return $result;
+            }
         }
 
         return false;
@@ -206,6 +210,10 @@ class DockerService
         return $this->getResponseBodyJSON($response);
     }
 
+    /**
+     * @param $containerName
+     * @return bool|mixed
+     */
     public function getContainerInfo($containerName)
     {
         $uri = $this->getAPIURI('containers/' . $containerName . '/json');
@@ -214,6 +222,10 @@ class DockerService
         return $this->getResponseBodyJSON($response);
     }
 
+    /**
+     * @param string $handle
+     * @return bool|mixed
+     */
     public function deleteContainer(string $handle)
     {
         $uri = $this->getAPIURI('containers/' . $handle);
@@ -227,6 +239,10 @@ class DockerService
         return $this->getResponseBodyJSON($response);
     }
 
+    /**
+     * @param $handle
+     * @return mixed
+     */
     public function startContainer($handle)
     {
         $uri = $this->getAPIURI('containers/' . $handle . '/start');
@@ -235,10 +251,13 @@ class DockerService
         $response = $this->client->send($request);
 
         $return['code'] = $this->getResponseCode($response);
-        $return['message'] = $this->getResponseBodyJSON($response)->message;
         return $return;
     }
 
+    /**
+     * @param $handle
+     * @return mixed
+     */
     public function stopContainer($handle)
     {
         $uri = $this->getAPIURI('containers/' . $handle . '/stop');
@@ -247,7 +266,6 @@ class DockerService
         $response = $this->client->send($request);
 
         $return['code'] = $this->getResponseCode($response);
-        $return['message'] = $this->getResponseBodyJSON($response)->message;
         return $return;
     }
 }
