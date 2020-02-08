@@ -25,7 +25,9 @@
                 Latest Activity
             </p>
             <ul class="menu-list">
-
+                @foreach($recentCourses as $course)
+                    <li><a href="{{ route('viewCourse', $course->id) }}">{{ $course->name }}</a></li>
+                @endforeach
             </ul>
             @endif
             <p class="menu-label">

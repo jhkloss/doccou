@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Course\CourseController;
+use App\Task;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +55,7 @@ class UserController extends Controller
 
     static function getUserCourses()
     {
-        return User::find(Auth::id())->courses->all();
+        return User::find(Auth::id())->courses->sortByDesc('updated_at')->all();
     }
 
     static function getUserTasks()
@@ -64,7 +65,7 @@ class UserController extends Controller
 
         foreach ($courses as $course)
         {
-            $tasks = array_merge($tasks, Course::find($course->id)->tasks->all());
+            $tasks = array_merge($tasks, Course::find($course->id)->tasks->sortByDesc('updated_at')->all());
         }
 
         return $tasks;

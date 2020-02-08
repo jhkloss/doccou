@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Course;
 
 use App\Course;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\UserController;
 use App\Traits\MemberTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -136,5 +137,14 @@ class CourseController extends Controller
             }
         }
         return false;
+    }
+
+    /**
+     * @param int $amount
+     * @return
+     */
+    public function getRecent(int $amount)
+    {
+        return array_slice(UserController::getUserCourses(), 0, $amount );
     }
 }

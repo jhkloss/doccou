@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Task;
 use App\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Course\CourseController;
+use App\Http\Controllers\User\UserController;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
